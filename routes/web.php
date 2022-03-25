@@ -18,9 +18,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/', function () {
   $posts = Post::all();
 
-  $post = YamlFrontMatter::parseFile(resource_path() . '/posts/first-post.html');
-  ddd($post);
-  return view('posts', ['posts' => $post]);
+
+  return view('posts', ['posts' => collect($posts)]);
 });
 
 Route::get('/posts/{post}', function ($slug) {

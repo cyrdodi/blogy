@@ -13,9 +13,14 @@
     <article>
       <?php foreach( $posts as $post): ?>
       <h1>
-        <?= $post->title ?>
+        <a href="posts/<?= $post->slug ?>">
+          <?= $post->title ?>
+        </a>
       </h1>
-
+      <p>
+        <?= $post->excerpt ?>
+        {{-- {{ ddd($post) }} --}}
+      </p>
       <?php endforeach; ?>
     </article>
 </body>

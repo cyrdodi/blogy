@@ -2,26 +2,48 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Post
 {
+  public $title;
+  public $date;
+  public $body;
+  public $excerpt;
+  public $slug;
+
+  public function __construct($title, $date, $body, $excerpt, $slug)
+  {
+    $this->title = $title;
+    $this->date = $date;
+    $this->body = $body;
+    $this->excerpt = $excerpt;
+    $this->slug = $slug;
+  }
+
   // find all post
   public static function all()
   {
-
     /*
       fascade is class that can be used for a lot of functionality
       File is a fascade for the file system,
       File::files() is a method that returns an array of all files in a directory
      */
-    $posts = File::files(resource_path() . '/posts');
-
+    $files = File::files(resource_path() . '/posts');
+    // ddd($posts);
     // array_map is a function that takes a callback function and applies it to each element of an array
     return array_map(function ($post) {
-      return $post->getContents();
-    }, $posts);
+      $documents = YamlFrontMatter::parseFile($post);
+      return new Post(
+        $documents->title,
+        $documents->date,
+        $documents->body(),
+        $documents->excerpt,
+        $documents->slug
+      );
+    }, $files);
   }
 
   // find a post by its slug
