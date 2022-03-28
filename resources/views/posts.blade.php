@@ -3,10 +3,11 @@
     <article>
       @foreach( $posts as $post)
       <h1>
-        <a href="posts/{{ $post->id }}">
+        <a href="posts/{{ $post->slug }}">
           {{ $post->title }}
         </a>
       </h1>
+      <a href="">{{ $post->category->name }}</a>
       <p>
         {{ $post->excerpt }}
       </p>

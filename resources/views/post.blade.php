@@ -10,10 +10,9 @@
 
 <body>
   <h1>
-    <a href="posts/{{ $post->slug }}">
-      {{ $post->title }}
-    </a>
+    {{ $post->title }}
   </h1>
+  <a href="">{{ $post->category->name }}</a>
   <p>
     <?= $post->body ?>
   </p>
