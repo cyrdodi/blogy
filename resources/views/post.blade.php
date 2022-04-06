@@ -13,7 +13,8 @@
     {{ $post->title }}
   </h1>
   <p>
-    Written by {{ $post->user->name }} in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name
+    Written by <a href="/author/{{ $post->author->username }}">{{ $post->author->name }}</a> in <a
+      href="/categories/{{ $post->category->slug }}">{{ $post->category->name
       }}</a>
   </p>
   <p>

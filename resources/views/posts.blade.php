@@ -7,7 +7,12 @@
           {{ $post->title }}
         </a>
       </h1>
-      <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+      <div>
+        Posted by <a href="/author/{{ $post->author->username }}">{{ $post->author->name }}</a> on <a
+          href="/categories/{{ $post->category->slug }}">{{
+          $post->category->name
+          }}</a>
+      </div>
       <p>
         {{ $post->excerpt }}
       </p>
