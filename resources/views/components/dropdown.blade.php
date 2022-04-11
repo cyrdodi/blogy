@@ -4,6 +4,7 @@
   {{-- Trigger --}}
   <div @click="show = ! show">
     {{ $trigger }}
+
   </div>
 
   {{-- Links --}}

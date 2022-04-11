@@ -16,11 +16,14 @@
     <div class="relative flex items-center bg-gray-100 lg:inline-flex lg:w-44 rounded-xl">
       <x-dropdown>
         <x-slot name="trigger">
-          <button @click="open=!open" class="w-full py-2 pl-3 text-sm font-semibold text-left pr-9">{{
-            isset($currentCategory) ? $currentCategory->name : 'Category' }}</button>
+          <button @click="open=!open"
+            class="flex w-full py-2 pl-3 text-sm font-semibold text-left lg:inline-flex pr-9">{{
+            isset($currentCategory) ? $currentCategory->name : 'Category' }}
+            <x-icon name="down-arrow" class="absolute pointer-events-none" style="right: 12px;" />
+          </button>
         </x-slot>
 
-        <x-dropdown-item href="/">All</x-dropdown-item>
+        <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
         @foreach($categories as $category)
         <x-dropdown-item href="/categories/{{ $category->slug }}"
           :active="request()->is('categories/'.$category->slug)">
