@@ -8,8 +8,8 @@
   </div>
 
   {{-- Links --}}
-  <div x-show="open" @click.outside="open = false" class="absolute z-50 w-full mt-2 text-left bg-gray-100 rounded-xl"
-    style="display:none">
+  <div x-show="open" @click.outside="open = false"
+    class="absolute z-50 w-full mt-2 overflow-y-auto text-left bg-gray-100 rounded-xl max-h-44" style="display:none">
     {{ $slot }}
   </div>
 </div>
