@@ -11,30 +11,30 @@
     I'm going to keep you guys up to speed with what's going on!
   </p>
 
-  <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
+  <div class="mt-8 space-y-2 lg:space-y-0 lg:space-x-4">
     <!--  Category -->
-    <div class="relative flex lg:inline-flex items-center lg:w-44  bg-gray-100 rounded-xl">
-      <div x-data="{open:false}" class="w-full">
-        <button @click="open=!open" class="py-2 pl-3 w-full  text-left pr-9 text-sm font-semibold">{{
-          isset($currentCategory) ? $currentCategory->name : 'Category' }}</button>
-        <div x-show="open" @click.outside="open = false"
-          class="absolute z-50 bg-gray-100 mt-2 rounded-xl w-full text-left" style="display:none">
-          <a href="/" class="block px-2 py-1 text-leading-1 text-sm hover:bg-blue-500 hover:text-white">All</a>
-          @foreach($categories as $category)
-          <a href="/categories/{{ $category->slug }}" class="block px-2 py-1 text-leading-1 text-sm hover:bg-blue-500 hover:text-white
-            {{-- $currentCategory->slug === $category->slug same as $currentCategory->is($category) --}}
-            {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : '' }}">{{
-            $category->name }}</a>
-          @endforeach
-        </div>
-      </div>
+    <div class="relative flex items-center bg-gray-100 lg:inline-flex lg:w-44 rounded-xl">
+      <x-dropdown>
+        <x-slot name="trigger">
+          <button @click="open=!open" class="w-full py-2 pl-3 text-sm font-semibold text-left pr-9">{{
+            isset($currentCategory) ? $currentCategory->name : 'Category' }}</button>
+        </x-slot>
+
+        <x-dropdown-item href="/">All</x-dropdown-item>
+        @foreach($categories as $category)
+        <x-dropdown-item href="/categories/{{ $category->slug }}"
+          :active="request()->is('categories/'.$category->slug)">
+          {{ $category->name }}
+        </x-dropdown-item>
+        @endforeach
+      </x-dropdown>
     </div>
 
 
 
     <!-- Other Filters -->
-    <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-      <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
+    <div class="relative flex items-center bg-gray-100 lg:inline-flex rounded-xl">
+      <select class="flex-1 py-2 pl-3 text-sm font-semibold bg-transparent appearance-none pr-9">
         <option value="category" disabled selected>Other Filters
         </option>
         <option value="foo">Foo
@@ -43,7 +43,7 @@
         </option>
       </select>
 
-      <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22" height="22"
+      <svg class="absolute transform -rotate-90 pointer-events-none" style="right: 12px;" width="22" height="22"
         viewBox="0 0 22 22">
         <g fill="none" fill-rule="evenodd">
           <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
@@ -54,10 +54,10 @@
     </div>
 
     <!-- Search -->
-    <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
+    <div class="relative flex items-center px-3 py-2 bg-gray-100 lg:inline-flex rounded-xl">
       <form method="GET" action="#">
         <input type="text" name="search" placeholder="Find something"
-          class="bg-transparent placeholder-black font-semibold text-sm">
+          class="text-sm font-semibold placeholder-black bg-transparent">
       </form>
     </div>
   </div>
