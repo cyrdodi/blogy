@@ -18,8 +18,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
+  $posts = Post::latest('published_at')->with('category', 'author');
+
+  if (request('search')) {
+    $posts = $posts
+      ->where('title', 'like', '%' . request('search') . '%')
+      ->orWhere('body', 'like', '%' . request('search') . '%');
+  }
+
   return view('posts', [
-    'posts' => Post::latest('published_at')->with('category', 'author')->get(),
+    'posts' => $posts->get(),
     'categories' => Category::all(),
   ]);
 })->name('home');
