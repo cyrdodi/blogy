@@ -15,6 +15,18 @@ class Post extends Model
 
   protected $guarded = [];
 
+  public function scopeFilter($query, array $filters)
+  {
+
+    $query->when($filters['search'], function ($query, $search) {
+      $query
+        ->where('title', 'like', '%' . $search . '%')
+        ->orWhere('body', 'like', '%' . $search . '%');
+    });
+
+    // return $query;
+  }
+
   public function category()
   {
     return $this->belongsTo(Category::class);
