@@ -1,6 +1,7 @@
 <x-layout>
 
-  @include('_posts-header')
+  @include('post._header')
+
   <x-post-grid :posts="$posts" />
 
 </x-layout>
