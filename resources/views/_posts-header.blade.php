@@ -2,8 +2,6 @@
   <h1 class="text-4xl">
     Latest <span class="text-blue-500">Laravel From Scratch</span> News
   </h1>
-
-
   <div class="mt-4 space-y-2 lg:space-y-0 lg:space-x-4">
     <!--  Category -->
     <div class="relative flex items-center bg-gray-100 lg:inline-flex lg:w-44 rounded-xl">
@@ -16,10 +14,9 @@
           </button>
         </x-slot>
 
-        <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
+        <x-dropdown-item href="/" :active="!request('category')">All</x-dropdown-item>
         @foreach($categories as $category)
-        <x-dropdown-item href="/categories/{{ $category->slug }}"
-          :active="request()->is('categories/'.$category->slug)">
+        <x-dropdown-item href="/?category={{ $category->slug }}" :active="request('category') === ($category->slug)">
           {{ $category->name }}
         </x-dropdown-item>
         @endforeach
