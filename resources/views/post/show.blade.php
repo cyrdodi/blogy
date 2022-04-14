@@ -8,13 +8,14 @@
           Published <time>{{ $post->created_at->diffForHumans() }}</time>
         </p>
 
-        <a href="/authors/{{ $post->author->username }}"></a>
-        <div class="flex items-center mt-4 text-sm lg:justify-center">
-          <img src="/images/lary-avatar.svg" alt="Lary avatar">
-          <div class="ml-3 text-left">
-            <h5 class="font-bold">{{ $post->author->name }}</h5>
+        <a href="/?author={{ $post->author->username }}">
+          <div class="flex items-center mt-4 text-sm lg:justify-center">
+            <img src="/images/lary-avatar.svg" alt="Lary avatar">
+            <div class="ml-3 text-left">
+              <h5 class="font-bold">{{ $post->author->name }}</h5>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-span-8">
