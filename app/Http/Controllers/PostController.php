@@ -11,7 +11,7 @@ class PostController extends Controller
   public function index()
   {
     return view('post.index', [
-      'posts' => Post::filter(request(['search', 'category', 'author']))->get(),
+      'posts' => Post::filter(request(['search', 'category', 'author']))->paginate(9)->withQueryString(),
     ]);
   }
 
