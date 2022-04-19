@@ -38,7 +38,7 @@
           <label class="block mb-2 text-xs font-bold text-gray-700 uppercase" for="password">password</label>
           <input type="password"
             class="w-full p-2 border border-gray-400 rounded-lg @error('password') border-red-400 @enderror"
-            name="password" id="password" value="{{ old('password') }}">
+            name="password" id="password">
           @error('password')
           <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
           @enderror
