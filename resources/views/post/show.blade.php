@@ -35,9 +35,7 @@
           </a>
 
           <div class="space-x-2">
-
             <x-category-button :category="$post->category" />
-
           </div>
         </div>
 
@@ -50,33 +48,9 @@
         </div>
       </div>
       <section class="col-span-8 col-start-5 mt-8 space-y-4">
-        @auth
-        <x-panel>
-          <form action="/posts/{{ $post->slug }}/comment" method="post">
-            @csrf
-            <div class="flex items-center">
-              <img src="https://i.pravatar.cc/40?u={{ auth()->id() }}" alt="" class="rounded-xl">
-              <h3 class="ml-4 text-lg font-semibold">What do you think?</h3>
-            </div>
 
-            <div class="mt-4">
-              <textarea name="body" id="body" rows="6" class="flex w-full p-4 focus:ring-2 rounded-xl"
-                placeholder="Express your thought"></textarea>
-            </div>
-            <div class="flex justify-end pt-4 mt-4 border-t border-gray-300">
-              <button type="submit"
-                class="px-10 py-3 font-semibold text-white bg-blue-500 bg-blue- rounded-2xl">Post</button>
-            </div>
-          </form>
-        </x-panel>
-        @else
-        <x-panel>
-          <a href="/register" class="font-semibold text-blue-500 hover:underline">Register</a> or <a href="/login"
-            class="font-semibold text-blue-500 hover:underline">Login</a> to participate in
-          comments.
-        </x-panel>
+        @include('post._comment-form')
 
-        @endauth
         @foreach($post->comment as $comment)
         <x-post-comment :comment="$comment" />
         @endforeach
