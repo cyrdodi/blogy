@@ -49,26 +49,9 @@
           {!! $post->body !!}
         </div>
       </div>
-
-      <section class="col-span-8 col-start-5 mt-8">
-        <article class="flex p-6 space-x-4 bg-gray-100 border border-gray-200 rounded-xl">
-          <div class="flex-shrink-0">
-            <img src="https://i.pravatar.cc/60" alt="" class="rounded-xl">
-          </div>
-
-          <div>
-            <header class="mb-4">
-              <h3 class="font-bold">John Doe</h3>
-              <p class="text-xs">
-                Posted <time>8 minutes ago</time>
-              </p>
-            </header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus facere officiis, reiciendis natus
-              asperiores minima nam amet perspiciatis consequatur sint aut impedit assumenda explicabo, quaerat quos
-              inventore iusto corporis laboriosam, ullam porro accusamus! Incidunt!</p>
-          </div>
-        </article>
-      </section>
+      @foreach($post->comment as $comment)
+      <x-post-comment :comment="$comment" />
+      @endforeach
     </article>
 
   </main>
