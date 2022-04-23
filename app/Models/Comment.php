@@ -11,6 +11,9 @@ class Comment extends Model
 {
   use HasFactory;
 
+  // change guarded input handle to app/Providers/AppServiceProviver.php
+  // protected $guarded = [];
+
   public function post()
   {
     return $this->belongsTo(Post::class);

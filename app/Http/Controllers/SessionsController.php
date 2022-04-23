@@ -22,7 +22,7 @@ class SessionsController extends Controller
     if (auth()->attempt($attributes)) {
       // prevent session fixation
       session()->regenerate();
-      redirect('/')->with('success', 'Welcome back');
+      return redirect('/')->with('success', 'Welcome back');
     }
 
     throw ValidationException::withMessages([
@@ -36,6 +36,6 @@ class SessionsController extends Controller
   {
     auth()->logout();
 
-    return redirect('/')->with('success', 'You have been successfully logged out!');
+    return back()->with('success', 'You have been successfully logged out!');
   }
 }
