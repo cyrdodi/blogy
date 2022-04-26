@@ -8,16 +8,15 @@ use Illuminate\Validation\ValidationException;
 
 class NewsletterController extends Controller
 {
-  public function __invoke()
+  public function __invoke(Newsletter $newsletter)
   {
+    // ddd($newsletter);
     request()->validate([
       'email' => 'required|email'
     ]);
 
 
     try {
-      $newsletter = new Newsletter;
-
       $newsletter->subscribe(request('email'));
     } catch (\Exception $e) {
       // throw ValidationException::withMessages([
