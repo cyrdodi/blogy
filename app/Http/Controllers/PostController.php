@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
 class PostController extends Controller
 {
   public function index()
@@ -18,5 +19,11 @@ class PostController extends Controller
   public function show(Post $post)
   {
     return view('post.show', ['post' => $post]);
+  }
+
+  public function create()
+  {
+
+    return view('post.create');
   }
 }
