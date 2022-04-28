@@ -32,8 +32,6 @@ class PostController extends Controller
   public function store()
   {
     // store the image and get the path file
-    $path = request()->file('thumbnail')->store('thumbnail');
-
     $attributes = request()->validate([
       'title' => 'required',
       'slug' => ['required', Rule::unique('categories', 'slug')],
@@ -42,6 +40,8 @@ class PostController extends Controller
       'body' => 'required',
       'category_id' => ['required', Rule::exists('categories', 'id')]
     ]);
+
+    $path = request()->file('thumbnail')->store('thumbnail');
 
     $attributes['user_id'] = auth()->user()->id;
     $attributes['thumbnail'] = $path;

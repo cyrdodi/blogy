@@ -7,16 +7,12 @@
       <h3 class="ml-4 text-lg font-semibold">What do you think?</h3>
     </div>
 
-    <div class="mt-4">
-      <textarea name="body" id="body" rows="6"
-        class="flex w-full p-4 focus:ring-2 rounded-xl @error('body') border border-red-500 @enderror"
-        placeholder="Express your thought"></textarea>
-    </div>
+    <x-form.textarea name="body" />
     @error('body')
     <div class="mt-2 text-xs text-red-500">{{ $message }}</div>
     @enderror
     <div class="flex justify-end pt-4 mt-4 border-t border-gray-300">
-      <x-primary-button>Submit</x-primary-button>
+      <x-form.button>Submit</x-form.button>
     </div>
   </form>
 </x-panel>
