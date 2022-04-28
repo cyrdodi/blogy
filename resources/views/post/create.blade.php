@@ -1,7 +1,8 @@
 <x-layout>
-  <main class="flex justify-center max-w-6xl mx-auto mt-10 space-y-6 lg:mt-20">
-    <x-panel class="w-2/4">
-      <form action="/posts/admin/create" method="post">
+  <main class="max-w-2xl mx-auto mt-10 space-y-6 lg:mt-20">
+    <h2 class="text-lg font-semibold">Create Posts</h2>
+    <x-panel class="">
+      <form action="/posts/admin/create" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-6">
           <label class="block mb-2 text-xs font-bold text-gray-700 uppercase" for="title">title</label>
@@ -19,6 +20,16 @@
             class="w-full p-2 border border-gray-400 rounded-lg @error('slug') border-red-400 @enderror" name="slug"
             id="slug" value="{{ old('slug') }}">
           @error('slug')
+          <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="mb-6">
+          <label class="block mb-2 text-xs font-bold text-gray-700 uppercase" for="thumbnail">thumbnail</label>
+          <input type="file"
+            class="w-full p-2 border border-gray-400 rounded-lg @error('thumbnail') border-red-400 @enderror"
+            name="thumbnail" id="thumbnail" value="{{ old('thumbnail') }}">
+          @error('thumbnail')
           <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
           @enderror
         </div>

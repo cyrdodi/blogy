@@ -4,7 +4,7 @@
   class="transition-colors duration-300 border border-black border-opacity-0 hover:bg-gray-100 hover:border-opacity-5 rounded-xl">
   <div class="px-5 py-6 lg:flex">
     <div class="flex-1 lg:mr-8">
-      <img src="/images/illustration-1.png" alt="Blog Post illustration" class="rounded-xl">
+      <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl">
     </div>
 
     <div class="flex flex-col justify-between flex-1">

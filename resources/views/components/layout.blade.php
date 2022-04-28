@@ -27,6 +27,8 @@
         <form action="/logout" method="post">
           @csrf
           <button type="submit" class="text-sm font-semibold text-blue-500">Logout</button>
+          <a href="/posts/admin/create" class="text-xs font-bold uppercase">Admin area</a>
+
         </form>
         @else
         <a href="/register" class="text-xs font-bold uppercase">Register</a>
