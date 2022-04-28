@@ -14,6 +14,7 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::post('/posts/{post:slug}/comment', [PostCommentController::class, 'store']);
 
 Route::get('/posts/admin/create', [PostController::class, 'create'])->middleware('admin');
+Route::post('/posts/admin/create', [PostController::class, 'store'])->middleware('admin');
 
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
