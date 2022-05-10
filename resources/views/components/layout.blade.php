@@ -23,13 +23,26 @@
       <div class="flex items-center mt-8 space-x-4 md:mt-0">
 
         @auth
-        <span> Welcome back {{ auth()->user()->name }}</span>
-        <form action="/logout" method="post">
-          @csrf
-          <button type="submit" class="text-sm font-semibold text-blue-500">Logout</button>
-          <a href="/posts/admin/create" class="text-xs font-bold uppercase">Admin area</a>
-
-        </form>
+        <x-dropdown>
+          <x-slot name="trigger">
+            <button>Welcome back {{ auth()->user()->name }}</button>
+          </x-slot>
+          <x-dropdown-item href="/admin/posts/create">Dashboard</x-dropdown-item>
+          <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New
+            Post
+          </x-dropdown-item>
+          {{--
+          x-data="{}" = declare this as an alpine componnent
+          @click.prevent="" = listen for click and prevent default
+          document.querySelector('#logout-form').submit() = find this id then submit the form
+          --}}
+          <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out
+          </x-dropdown-item>
+          {{-- handle logout form dynamically using alpine js --}}
+          <form id="logout-form" action="/logout" method="post" class="hidden">
+            @csrf
+          </form>
+        </x-dropdown>
         @else
         <a href="/register" class="text-xs font-bold uppercase">Register</a>
         <a href="/login" class="text-xs font-bold uppercase">Login</a>
