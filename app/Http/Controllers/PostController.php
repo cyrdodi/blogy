@@ -26,7 +26,7 @@ class PostController extends Controller
   {
     $categories = Category::get();
 
-    return view('post.create', ['categories' => $categories]);
+    return view('admin.posts.create', ['categories' => $categories]);
   }
 
   public function store()
