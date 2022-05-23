@@ -6,12 +6,14 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 
 class PostController extends Controller
 {
   public function index()
   {
+
     return view('post.index', [
       'posts' => Post::filter(request(['search', 'category', 'author']))->paginate(9)->withQueryString(),
     ]);
@@ -24,6 +26,7 @@ class PostController extends Controller
 
   public function create()
   {
+    $this->authorize('admin');
     $categories = Category::get();
 
     return view('admin.posts.create', ['categories' => $categories]);
